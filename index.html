@@ -25,13 +25,13 @@
             content:'';
             position:absolute;
             top:0; left:0; right:0; bottom:0;
-            background: linear-gradient(135deg, rgba(139,94,52,0.6), rgba(107,90,54,0.7)); /* Adjusted overlay using Rich Bronze and Muted Olive */
+            background: linear-gradient(135deg, rgba(139,69,19,0.6), rgba(160,82,45,0.7)); /* Gradient overlay for depth */
             z-index:-1;
         }
         .container {
             width:100%;
             max-width:1000px;
-            background: rgba(255,249,240,0.95); /* Warm Ivory with higher opacity */
+            background: rgba(255,248,220,0.95); /* Warmer ivory with higher opacity */
             border-radius:20px;
             box-shadow:0 20px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.5); /* Enhanced depth */
             overflow:hidden;
@@ -39,15 +39,15 @@
             flex-direction:column;
             height:95vh;
             backdrop-filter: blur(15px); /* Stronger blur */
-            border:2px solid rgba(139,94,52,0.6); /* Rich Bronze border */
+            border:2px solid rgba(218,165,32,0.6); /* Thicker gold border */
         }
         header {
-            background: linear-gradient(135deg, #C89A2A 0%, #F7F4EA 50%, #A77412 100%); /* Royal Gold to Soft Champagne to Deep Gold */
-            color:#1E1B18; /* Charcoal text */
+            background: linear-gradient(135deg, #DEB887 0%, #F5DEB3 50%, #DAA520 100%); /* Warmer tan to gold */
+            color:#8B4513; /* Darker saddle brown */
             padding:15px;
             text-align:center;
             position:relative;
-            box-shadow:0 4px 15px rgba(200,154,42,0.4); /* Royal Gold shadow */
+            box-shadow:0 4px 15px rgba(218,165,32,0.4); /* Enhanced gold shadow */
         }
         .logo {
             font-size:20px;
@@ -59,7 +59,7 @@
             letter-spacing:0.5px;
             font-family: 'Playfair Display', serif; /* Elegant serif for logo */
         }
-        .logo i { font-size:24px; color:#C89A2A; animation: iconFloat 3s ease-in-out infinite; } /* Royal Gold icon */
+        .logo i { font-size:24px; color:#DAA520; animation: iconFloat 3s ease-in-out infinite; } /* Subtle float animation */
         @keyframes iconFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); } }
         .header-actions { display:flex; justify-content:center; gap:12px; margin-top:12px; align-items:center; flex-wrap:wrap; }
         .name-input-container {
@@ -68,32 +68,32 @@
             justify-content:center;
             align-items:center;
             gap:10px;
-            background: rgba(255,249,240,0.85); /* Warm Ivory background */
+            background: rgba(255,248,220,0.85); /* Warmer background */
             border-radius:12px;
             margin-top:12px;
             backdrop-filter: blur(5px);
-            border:1px solid rgba(139,94,52,0.5); /* Rich Bronze */
+            border:1px solid rgba(218,165,32,0.5); /* Stronger gold */
         }
-        .name-input-container label { font-size:15px; font-weight:600; white-space:nowrap; color:#1E1B18; } /* Charcoal */
+        .name-input-container label { font-size:15px; font-weight:600; white-space:nowrap; color:#8B4513; }
         #customer-name {
             padding:8px 14px;
-            border:1px solid #F7F4EA; /* Soft Champagne border */
+            border:1px solid #DEB887; /* Warmer border */
             border-radius:8px;
             font-size:15px;
             min-width:160px;
-            background:rgba(255,249,240,0.95); /* Warm Ivory */
+            background:rgba(255,248,220,0.95);
             transition:all 0.3s;
             font-family: 'Inter', sans-serif;
         }
         #customer-name:focus {
             outline:none;
-            border-color:#C89A2A; /* Royal Gold */
-            box-shadow:0 0 0 3px rgba(200,154,42,0.25), 0 0 20px rgba(200,154,42,0.1); /* Glow effect */
+            border-color:#DAA520;
+            box-shadow:0 0 0 3px rgba(218,165,32,0.25), 0 0 20px rgba(218,165,32,0.1); /* Glow effect */
         }
         .view-db-btn {
             padding:10px 18px;
-            background: linear-gradient(135deg, #F7F4EA 0%, #C89A2A 100%); /* Soft Champagne to Royal Gold */
-            color:#1E1B18; /* Charcoal */
+            background: linear-gradient(135deg, #F5DEB3 0%, #DEB887 100%); /* Warmer champagne */
+            color:#8B4513;
             border:none;
             border-radius:8px;
             cursor:pointer;
@@ -104,19 +104,19 @@
             display:inline-flex;
             align-items:center;
             gap:8px;
-            box-shadow:0 4px 15px rgba(200,154,42,0.3); /* Royal Gold shadow */
-            border:1px solid rgba(139,94,52,0.3); /* Rich Bronze */
+            box-shadow:0 4px 15px rgba(218,165,32,0.3);
+            border:1px solid rgba(218,165,32,0.3);
             font-family: 'Inter', sans-serif;
         }
         .view-db-btn:hover {
-            background: linear-gradient(135deg, #C89A2A 0%, #A77412 100%); /* Royal Gold to Deep Gold */
+            background: linear-gradient(135deg, #DEB887 0%, #B8860B 100%);
             transform:translateY(-2px) scale(1.02);
-            box-shadow:0 6px 20px rgba(200,154,42,0.5);
-            color:#FFFFFF; /* Contrast White on hover */
+            box-shadow:0 6px 20px rgba(218,165,32,0.5);
+            color:#654321;
         }
         .days-tabs {
             display:flex;
-            background: linear-gradient(135deg, #F7F4EA 0%, #FFF9F0 100%); /* Soft Champagne to Warm Ivory */
+            background: linear-gradient(135deg, #FFF8DC 0%, #E6E6FA 100%); /* Lighter lavender tint for variety */
             overflow-x:auto;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -125,7 +125,7 @@
             min-width:70px;
             padding:12px 8px;
             text-align:center;
-            color:#1E1B18; /* Charcoal */
+            color:#8B4513;
             cursor:pointer;
             transition:all 0.4s ease;
             border:none;
@@ -143,19 +143,19 @@
             left:0;
             right:0;
             height:3px;
-            background:linear-gradient(90deg, #C89A2A, #A77412, #8B5E34); /* Royal Gold to Deep Gold to Rich Bronze */
+            background:linear-gradient(90deg, #DAA520, #FFD700, #B8860B); /* Gold gradients */
             transform:scaleX(0);
             transition:transform 0.4s ease;
         }
         .day-tab:hover {
-            color:#6A5E36; /* Muted Olive */
+            color:#654321;
             transform:translateY(-1px);
-            background: rgba(247,244,234,0.2); /* Soft Champagne tint */
+            background: rgba(245,222,179,0.2);
         }
         .day-tab:hover::before { transform:scaleX(1); }
         .day-tab.active {
-            color:#1E1B18; /* Charcoal */
-            background:rgba(255,249,240,0.5); /* Warm Ivory */
+            color:#8B4513;
+            background:rgba(245,222,179,0.5); /* Enhanced wheat */
         }
         .day-tab.active::before { transform:scaleX(1); }
         .content-area { flex:1; overflow:hidden; display:flex; flex-direction:column; position: relative; }
@@ -164,14 +164,14 @@
         @keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
         .day-title {
             text-align:center;
-            color:#1E1B18; /* Charcoal */
+            color:#8B4513;
             margin-bottom:20px;
             font-size:24px;
             position:relative;
             padding-bottom:10px;
             font-weight:700;
             letter-spacing:0.5px;
-            background:linear-gradient(135deg, #C89A2A, #F7F4EA, #A77412); /* Royal Gold to Soft Champagne to Deep Gold */
+            background:linear-gradient(135deg, #DAA520, #F5DEB3, #DEB887); /* Warmer gold to tan */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -186,17 +186,17 @@
             transform:translateX(-50%);
             width:80px;
             height:3px;
-            background:linear-gradient(90deg, #C89A2A, #A77412, #8B5E34); /* Royal Gold to Deep Gold to Rich Bronze */
+            background:linear-gradient(90deg, #DAA520, #FFD700, #B8860B); /* Gold */
             border-radius:2px;
         }
         .meal-section {
             margin-bottom:25px;
-            background:rgba(255,249,240,0.95); /* Warm Ivory, more opaque */
+            background:rgba(255,248,220,0.95); /* Warmer, more opaque */
             border-radius:20px;
             overflow:visible; /* Allow video overflow */
             box-shadow:0 12px 35px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.7); /* Enhanced shadows */
             backdrop-filter: blur(10px);
-            border:1px solid rgba(139,94,52,0.4); /* Rich Bronze border */
+            border:1px solid rgba(218,165,32,0.4); /* Gold border */
             transition:all 0.4s ease;
             position:relative;
             display: flex;
@@ -210,7 +210,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #C89A2A, #A77412, #8B5E34, #6A5E36); /* Royal Gold to Deep Gold to Rich Bronze to Muted Olive */
+            background: linear-gradient(90deg, #DAA520, #FFD700, #B8860B, #CD853F); /* Gold to dark gold */
             z-index: 3;
         }
         .meal-section:hover {
@@ -218,8 +218,8 @@
             box-shadow:0 18px 45px rgba(0,0,0,0.25); /* Deeper hover shadow */
         }
         .meal-header {
-            background: linear-gradient(135deg, #F7F4EA 0%, #C89A2A 100%); /* Soft Champagne to Royal Gold */
-            color:#1E1B18; /* Charcoal */
+            background: linear-gradient(135deg, #F5DEB3 0%, #DEB887 100%); /* Warmer champagne */
+            color:#8B4513;
             padding:15px 18px;
             display:flex;
             align-items:center;
@@ -246,27 +246,27 @@
         @keyframes shimmer { 0% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
         .meal-header i {
             font-size: 22px;
-            background: linear-gradient(135deg, #C89A2A, #A77412); /* Royal Gold to Deep Gold */
+            background: linear-gradient(135deg, #DAA520, #FFD700); /* Gold */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .meal-header.lunch {
-            background: linear-gradient(135deg, #FFF9F0 0%, #F7F4EA 50%, #C89A2A 100%); /* Warm Ivory to Soft Champagne to Royal Gold */
-            color:#1E1B18; /* Charcoal */
+            background: linear-gradient(135deg, #FFF8DC 0%, #F0E68C 50%, #DAA520 100%); /* Lighter gold for lunch */
+            color:#8B4513;
         }
         .meal-header.lunch i {
-            background: linear-gradient(135deg, #A77412, #8B5E34); /* Deep Gold to Rich Bronze */
+            background: linear-gradient(135deg, #FFD700, #B8860B); /* Brighter gold */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .meal-header.dinner {
-            background: linear-gradient(135deg, #F7F4EA 0%, #C89A2A 50%, #8B5E34 100%); /* Soft Champagne to Royal Gold to Rich Bronze */
-            color:#1E1B18; /* Charcoal */
+            background: linear-gradient(135deg, #F5F5DC 0%, #DEB887 50%, #CD853F 100%); /* Warmer darker champagne */
+            color:#8B4513;
         }
         .meal-header.dinner i {
-            background: linear-gradient(135deg, #C89A2A, #8B5E34); /* Royal Gold to Rich Bronze */
+            background: linear-gradient(135deg, #DAA520, #B8860B); /* Darker gold */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -276,14 +276,14 @@
         .category-title {
             font-size:16px;
             font-weight:700;
-            color:#1E1B18; /* Charcoal */
+            color:#8B4513;
             margin-bottom:12px;
             padding-bottom:8px;
-            border-bottom:2px solid #C89A2A; /* Royal Gold border */
+            border-bottom:2px solid #DAA520; /* Gold border */
             text-align:center;
             position:relative;
             letter-spacing:0.5px;
-            background:linear-gradient(135deg, #C89A2A, #A77412); /* Royal Gold to Deep Gold */
+            background:linear-gradient(135deg, #DAA520, #FFD700); /* Gold gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -297,7 +297,7 @@
             transform:translateX(-50%);
             width:25px;
             height:2px;
-            background:#8B5E34; /* Rich Bronze */
+            background:#B8860B; /* Darker gold */
             border-radius:1px;
         }
         .dish-item {
@@ -306,10 +306,10 @@
             align-items:center;
             padding:12px;
             border-radius:15px;
-            background:rgba(255,249,240,0.98); /* Warm Ivory background */
+            background:rgba(255,248,220,0.98); /* Warmer background */
             margin-bottom:12px;
             box-shadow:0 5px 20px rgba(0,0,0,0.15);
-            border:1px solid rgba(139,94,52,0.4); /* Rich Bronze border */
+            border:1px solid rgba(218,165,32,0.4); /* Stronger border */
             transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             height:60px;
             width:100%;
@@ -323,7 +323,7 @@
             left:0;
             right:0;
             height:100%;
-            background:linear-gradient(90deg, transparent, rgba(200,154,42,0.12), transparent); /* Royal Gold shimmer */
+            background:linear-gradient(90deg, transparent, rgba(218,165,32,0.12), transparent); /* Enhanced shimmer */
             opacity:0;
             transition:opacity 0.4s;
             z-index: -1;
@@ -331,33 +331,33 @@
         .dish-item:hover {
             transform:translateY(-5px) scale(1.04); /* More pronounced scale */
             box-shadow:0 12px 35px rgba(0,0,0,0.2);
-            border-color:#C89A2A; /* Royal Gold */
+            border-color:#DAA520;
         }
         .dish-item:hover::before { opacity:1; }
         .dish-info { display:flex; align-items:center; gap:10px; flex:1; overflow:hidden; }
         .dish-icon {
             width:28px;
             height:28px;
-            background:linear-gradient(135deg, #C89A2A, #F7F4EA, #A77412); /* Royal Gold to Soft Champagne to Deep Gold */
+            background:linear-gradient(135deg, #DAA520, #F5DEB3, #FFD700); /* Gold gradient */
             border-radius:50%;
             display:flex;
             align-items:center;
             justify-content:center;
-            color:#1E1B18; /* Charcoal */
+            color:#8B4513;
             font-size:12px;
             flex-shrink:0;
-            box-shadow:0 3px 10px rgba(200,154,42,0.6); /* Royal Gold shadow */
+            box-shadow:0 3px 10px rgba(218,165,32,0.6); /* Stronger shadow */
             animation: pulse 2s infinite;
         }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
         .dish-name {
             font-size:15px;
             font-weight:600;
-            color:#1E1B18; /* Charcoal */
+            color:#8B4513;
             white-space:nowrap;
             overflow:hidden;
             text-overflow:ellipsis;
-            background:linear-gradient(135deg, #1E1B18, #C89A2A); /* Charcoal to Royal Gold */
+            background:linear-gradient(135deg, #8B4513, #DAA520); /* Dark to gold */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -369,8 +369,8 @@
             height:24px;
             border-radius:50%;
             border:none;
-            background:linear-gradient(135deg, #F7F4EA, #C89A2A, #A77412); /* Soft Champagne to Royal Gold to Deep Gold */
-            color:#1E1B18; /* Charcoal */
+            background:linear-gradient(135deg, #F5DEB3, #DEB887, #FFD700); /* Warmer gradient */
+            color:#8B4513;
             font-size:14px;
             font-weight:700;
             cursor:pointer;
@@ -378,14 +378,14 @@
             align-items:center;
             justify-content:center;
             transition:all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow:0 3px 10px rgba(200,154,42,0.5); /* Royal Gold shadow */
+            box-shadow:0 3px 10px rgba(218,165,32,0.5);
             font-family: 'Inter', sans-serif;
         }
         .qty-btn:hover {
-            background:linear-gradient(135deg, #C89A2A, #8B5E34, #A77412); /* Royal Gold to Rich Bronze to Deep Gold */
+            background:linear-gradient(135deg, #DEB887, #B8860B, #DAA520);
             transform:scale(1.15) rotate(10deg);
-            box-shadow:0 5px 15px rgba(200,154,42,0.6);
-            color:#FFFFFF; /* Contrast White */
+            box-shadow:0 5px 15px rgba(218,165,32,0.6);
+            color:#654321;
         }
         .qty-btn:active { transform:scale(0.9); }
         .qty-display {
@@ -393,21 +393,21 @@
             text-align:center;
             font-size:14px;
             font-weight:700;
-            color:#1E1B18; /* Charcoal */
-            background:linear-gradient(135deg, rgba(200,154,42,0.4), rgba(247,244,234,0.4)); /* Royal Gold and Soft Champagne tint */
+            color:#8B4513;
+            background:linear-gradient(135deg, rgba(218,165,32,0.4), rgba(255,215,0,0.4)); /* Stronger tint */
             border-radius:6px;
             padding:3px;
             box-shadow:inset 0 1px 3px rgba(0,0,0,0.1);
             font-family: 'Inter', sans-serif;
         }
         .order-summary {
-            background:linear-gradient(135deg, rgba(255,249,240,0.98) 0%, rgba(247,244,234,0.98) 100%); /* Warm Ivory to Soft Champagne */
-            color:#1E1B18; /* Charcoal */
+            background:linear-gradient(135deg, rgba(255,248,220,0.98) 0%, rgba(245,222,179,0.98) 100%); /* Warmer, opaque */
+            color:#8B4513;
             padding:18px;
             border-radius:20px;
             margin-top:20px;
-            border:1px solid rgba(139,94,52,0.5); /* Rich Bronze */
-            box-shadow:0 8px 25px rgba(200,154,42,0.25); /* Royal Gold shadow */
+            border:1px solid rgba(218,165,32,0.5); /* Stronger border */
+            box-shadow:0 8px 25px rgba(218,165,32,0.25); /* Enhanced gold shadow */
             position:relative;
             z-index: 2;
         }
@@ -419,8 +419,8 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #C89A2A, #A77412); /* Royal Gold to Deep Gold */
-            color: #1E1B18; /* Charcoal */
+            background: linear-gradient(135deg, #DAA520, #FFD700); /* Gold */
+            color: #8B4513;
             width: 20px;
             height: 20px;
             border-radius: 50%;
@@ -428,7 +428,7 @@
             align-items: center;
             justify-content: center;
             font-size: 10px;
-            box-shadow: 0 2px 8px rgba(200,154,42,0.3); /* Royal Gold shadow */
+            box-shadow: 0 2px 8px rgba(218,165,32,0.3);
         }
         .summary-header {
             display:flex;
@@ -437,7 +437,7 @@
             font-size:20px;
             font-weight:700;
             letter-spacing:0.5px;
-            background:linear-gradient(135deg, #1E1B18, #C89A2A); /* Charcoal to Royal Gold */
+            background:linear-gradient(135deg, #8B4513, #DAA520); /* Dark to gold */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -447,36 +447,36 @@
         .summary-section-header {
             font-size:16px;
             font-weight:700;
-            color:#C89A2A; /* Royal Gold */
+            color:#DAA520;
             margin:10px 0 5px 0;
             padding-bottom:5px;
-            border-bottom:1px solid rgba(139,94,52,0.5); /* Rich Bronze */
+            border-bottom:1px solid rgba(218,165,32,0.5);
             font-family: 'Playfair Display', serif;
         }
         .summary-item {
             display:flex;
             justify-content:space-between;
             padding:10px 0;
-            border-bottom:1px solid rgba(30,27,24,0.25); /* Charcoal tint */
+            border-bottom:1px solid rgba(139,69,19,0.25); /* Slightly darker */
             font-size:14px;
             transition:all 0.3s;
-            background:rgba(255,249,240,0.8); /* Warm Ivory */
+            background:rgba(255,248,220,0.8); /* Warmer ivory */
             margin-bottom:5px;
             border-radius:8px;
             padding:8px 12px;
             font-family: 'Inter', sans-serif;
         }
         .summary-item:hover {
-            color:#6A5E36; /* Muted Olive */
+            color:#654321;
             transform:translateX(5px);
-            box-shadow:0 3px 12px rgba(200,154,42,0.25); /* Royal Gold hover */
+            box-shadow:0 3px 12px rgba(218,165,32,0.25); /* Enhanced hover */
         }
         .summary-item:last-child { border-bottom:none; }
         .submit-btn {
             width:100%;
             padding:16px;
-            background: linear-gradient(135deg, #F7F4EA 0%, #C89A2A 50%, #A77412 100%); /* Soft Champagne to Royal Gold to Deep Gold */
-            color:#1E1B18; /* Charcoal */
+            background: linear-gradient(135deg, #F5DEB3 0%, #DEB887 50%, #DAA520 100%); /* Warmer champagne to gold */
+            color:#8B4513;
             border:none;
             border-radius:15px;
             font-size:18px;
@@ -488,8 +488,8 @@
             align-items:center;
             justify-content:center;
             gap:10px;
-            box-shadow:0 10px 30px rgba(200,154,42,0.35); /* Royal Gold shadow */
-            border:1px solid rgba(139,94,52,0.5); /* Rich Bronze */
+            box-shadow:0 10px 30px rgba(218,165,32,0.35); /* Enhanced shadow */
+            border:1px solid rgba(218,165,32,0.5);
             position:relative;
             overflow:hidden;
             z-index: 2;
@@ -502,16 +502,16 @@
             left:50%;
             width:0;
             height:0;
-            background:linear-gradient(45deg, #C89A2A, #A77412, #8B5E34); /* Royal Gold ripple to Deep Gold to Rich Bronze */
+            background:linear-gradient(45deg, #DAA520, #FFD700, #B8860B); /* Gold ripple */
             border-radius:50%;
             transition:all 0.6s;
             transform:translate(-50%, -50%);
         }
         .submit-btn:hover {
-            background: linear-gradient(135deg, #C89A2A 0%, #8B5E34 50%, #6A5E36 100%); /* Royal Gold to Rich Bronze to Muted Olive */
+            background: linear-gradient(135deg, #DEB887 0%, #B8860B 50%, #CD853F 100%); /* Warmer darker hover */
             transform:translateY(-4px) scale(1.02);
-            box-shadow:0 15px 40px rgba(200,154,42,0.45);
-            color:#FFFFFF; /* Contrast White */
+            box-shadow:0 15px 40px rgba(218,165,32,0.45);
+            color:#654321;
         }
         .submit-btn:hover::before { width:300px; height:300px; }
         .submit-btn:active { transform:translateY(-2px); }
@@ -524,13 +524,13 @@
             width: 100%;
             height: 100%;
             background-image:
-                radial-gradient(2px 2px at 20px 30px, #C89A2A, transparent),
-                radial-gradient(1.5px 1.5px at 40px 70px, rgba(200,154,42,0.9), transparent),
-                radial-gradient(0.8px 0.8px at 90px 40px, #A77412, transparent),
-                radial-gradient(1.2px 1.2px at 130px 80px, rgba(167,116,18,0.7), transparent),
-                radial-gradient(2.5px 2.5px at 160px 30px, #C89A2A, transparent),
-                radial-gradient(3px 3px at 200px 50px, #8B5E34, transparent),
-                radial-gradient(1px 1px at 250px 90px, rgba(200,154,42,0.6), transparent);
+                radial-gradient(2px 2px at 20px 30px, #FFD700, transparent),
+                radial-gradient(1.5px 1.5px at 40px 70px, rgba(255,215,0,0.9), transparent),
+                radial-gradient(0.8px 0.8px at 90px 40px, #DAA520, transparent),
+                radial-gradient(1.2px 1.2px at 130px 80px, rgba(218,165,32,0.7), transparent),
+                radial-gradient(2.5px 2.5px at 160px 30px, #FFD700, transparent),
+                radial-gradient(3px 3px at 200px 50px, #B8860B, transparent),
+                radial-gradient(1px 1px at 250px 90px, rgba(255,215,0,0.6), transparent);
             background-repeat: repeat;
             background-size: 300px 150px;
             animation: sparkle 25s linear infinite; /* Even slower for luxury feel */
@@ -544,10 +544,10 @@
         }
         /* Enhanced glow to sections for premium theme */
         .meal-section {
-            filter: drop-shadow(0 0 12px rgba(200, 154, 42, 0.25)); /* Royal Gold glow */
+            filter: drop-shadow(0 0 12px rgba(218, 165, 32, 0.25));
         }
         .meal-section:hover {
-            filter: drop-shadow(0 0 25px rgba(200, 154, 42, 0.35));
+            filter: drop-shadow(0 0 25px rgba(218, 165, 32, 0.35));
         }
         .toast {
             position: fixed;
@@ -595,9 +595,9 @@
         }
         /* make an accessible focus state with glow */
         .qty-btn:focus, .submit-btn:focus, .day-tab:focus, .view-db-btn:focus {
-            outline:3px solid rgba(200,154,42,0.6); /* Royal Gold outline */
+            outline:3px solid rgba(218,165,32,0.6);
             outline-offset:2px;
-            box-shadow:0 0 0 3px rgba(200,154,42,0.3);
+            box-shadow:0 0 0 3px rgba(218,165,32,0.3);
         }
     </style>
 </head>
@@ -1161,13 +1161,13 @@ updateSummary('monday');
 <div id="db-password-modal" class="db-modal" role="dialog" aria-modal="true" aria-labelledby="db-modal-title" style="display:none;">
   <div class="db-modal-overlay" id="db-modal-overlay"></div>
   <div class="db-modal-content" role="document" style="max-width:420px;padding:20px;border-radius:12px;background:rgba(255,255,255,0.98);box-shadow:0 20px 40px rgba(0,0,0,0.25);position:fixed;left:50%;top:45%;transform:translate(-50%,-50%);z-index:2000;">
-    <h3 id="db-modal-title" style="margin:0 0 10px 0;font-family:Inter, sans-serif;color:#1E1B18;">Protected: View Orders</h3>
-    <p style="margin:0 0 12px 0;color:#6A5E36;font-size:14px;">Enter the password to open the orders database.</p>
-    <label for="db-password-input" style="display:block;margin-bottom:8px;color:#1E1B18;font-weight:600;">Password</label>
-    <input id="db-password-input" type="password" autocomplete="current-password" style="width:100%;padding:10px;border-radius:8px;border:1px solid #F7F4EA;margin-bottom:12px;font-size:15px;" />
+    <h3 id="db-modal-title" style="margin:0 0 10px 0;font-family:Inter, sans-serif;color:#8B4513;">Protected: View Orders</h3>
+    <p style="margin:0 0 12px 0;color:#654321;font-size:14px;">Enter the password to open the orders database.</p>
+    <label for="db-password-input" style="display:block;margin-bottom:8px;color:#8B4513;font-weight:600;">Password</label>
+    <input id="db-password-input" type="password" autocomplete="current-password" style="width:100%;padding:10px;border-radius:8px;border:1px solid #DEB887;margin-bottom:12px;font-size:15px;" />
     <div style="display:flex;gap:8px;justify-content:flex-end;">
-      <button id="db-cancel-btn" type="button" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(30,27,24,0.15);background:transparent;cursor:pointer;">Cancel</button>
-      <button id="db-unlock-btn" type="button" style="padding:8px 12px;border-radius:8px;border:none;background:linear-gradient(135deg,#C89A2A,#A77412);color:#FFFFFF;cursor:pointer;font-weight:700;">Unlock</button>
+      <button id="db-cancel-btn" type="button" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(139,69,19,0.15);background:transparent;cursor:pointer;">Cancel</button>
+      <button id="db-unlock-btn" type="button" style="padding:8px 12px;border-radius:8px;border:none;background:linear-gradient(135deg,#DEB887,#DAA520);color:#8B4513;cursor:pointer;font-weight:700;">Unlock</button>
     </div>
     <p id="db-modal-error" style="color:#b00020;margin-top:12px;display:none;font-size:14px;"></p>
   </div>
