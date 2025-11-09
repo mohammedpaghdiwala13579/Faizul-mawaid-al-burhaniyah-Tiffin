@@ -664,6 +664,39 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
+        /* Loading Spinner */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 248, 220, 0.92);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #DAA520;
+            border-top: 5px solid #8B4513;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #8B4513;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width:768px) {
             body { padding:3px; }
             .container { height:100vh; border-radius:12px; }
@@ -685,6 +718,8 @@
             .header-actions { flex-direction:column; gap:10px; }
             .view-db-btn { justify-content:center; width:100%; }
             .toast { bottom: 10px; right: 10px; left: 10px; width: auto; }
+            .loading-overlay { padding: 20px; }
+            .loading-text { font-size: 14px; }
         }
 
         .qty-btn:focus, .submit-btn:focus, .day-tab:focus, .view-db-btn:focus { 
@@ -791,9 +826,14 @@
         </div>
     </div>
 
+    <!-- Loading Spinner -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Submitting your order...</div>
+    </div>
+
     <div id="toast" class="toast">Order Delivered</div>
 
-    <!-- ==================== WEEKLY MENU - EDIT THIS ONLY ==================== -->
     <!-- ==================== WEEKLY MENU - EDIT THIS ONLY ==================== -->
 <script>
     const weeklyMenu = {
@@ -915,7 +955,6 @@
       const dinnerSection = createMealSection('dinner', data.dinner);
       dayContent.insertBefore(dinnerSection, summary);
 
-      // Re-attach quantity button listeners after creating items
       attachQuantityListeners();
       updateSummary(day);
     }
@@ -948,7 +987,7 @@
 
         const title = document.createElement('div');
         title.className = 'category-title';
-        title.textContent = item.category;
+        title.textContent = item.cat;
         categoryDiv.appendChild(title);
 
         const dishItem = document.createElement('div');
@@ -973,10 +1012,8 @@
       return section;
     }
 
-    // Attach quantity button listeners (call after creating items)
     function attachQuantityListeners() {
       document.querySelectorAll('.qty-btn').forEach(btn => {
-        // Remove previous listeners to avoid duplicates
         btn.replaceWith(btn.cloneNode(true));
       });
 
@@ -1047,7 +1084,9 @@
         const header = document.createElement('div');
         header.className = 'summary-section-header';
         header.innerHTML = 'Dinner';
-        summaryDiv.appendChild(header);
+        summaryDiv.appendChild(header
+
+        );
         dinnerItems.forEach(item => {
           const div = document.createElement('div');
           div.className = 'summary-item';
@@ -1058,7 +1097,6 @@
       }
     }
 
-    // Tab switching
     document.querySelectorAll('.day-tab').forEach(tab => {
       tab.addEventListener('click', function() {
         document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
@@ -1070,7 +1108,6 @@
       });
     });
 
-    // Submit order
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSU2DvQ7i7QHrsEnXHVPCAKBsT2EP1mMD-5zFtTip5P9mMXYNUkFbRd0kHUKYRCKf8/exec";
 
     document.querySelectorAll('.submit-btn').forEach(button => {
@@ -1104,6 +1141,10 @@
 
         const data = { name, day: day.charAt(0).toUpperCase() + day.slice(1), items };
 
+        // Show loading spinner
+        const loading = document.getElementById('loading-overlay');
+        loading.style.display = 'flex';
+
         try {
           await fetch(GOOGLE_SCRIPT_URL, {
             method: "POST",
@@ -1112,32 +1153,32 @@
             body: JSON.stringify(data)
           });
 
-          // Success feedback
           const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flick.ogg");
           audio.play();
 
           const toast = document.getElementById('toast');
           toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 3000);
+          setTimeout(() => toast.classList.remove('show'), 500);
 
           if ('speechSynthesis' in window) {
             speechSynthesis.speak(new SpeechSynthesisUtterance('Order delivered'));
           }
 
-          // Reset quantities
           dayContent.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
           updateSummary(day);
         } catch (e) {
           alert("Error submitting. Try again.");
           console.error(e);
+        } finally {
+          // Hide loading spinner
+          loading.style.display = 'none';
         }
       });
     });
 
-    // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       Object.keys(weeklyMenu).forEach(day => createMenuForDay(day));
-      document.querySelector('.day-tab.active').click(); // Trigger Monday
+      document.querySelector('.day-tab.active').click();
     });
 </script>
 
@@ -1279,6 +1320,9 @@
 
             const data = { name, day, items };
 
+            const loading = document.getElementById('loading-overlay');
+            loading.style.display = 'flex';
+
             try {
               await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
@@ -1294,7 +1338,7 @@
               toast.classList.add('show');
               setTimeout(() => {
                 toast.classList.remove('show');
-              }, 3000);
+              }, 500);
 
               if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance('Order delivered');
@@ -1307,6 +1351,8 @@
             } catch (error) {
               alert("Error submitting order. Please try again.");
               console.error(error);
+            } finally {
+              loading.style.display = 'none';
             }
           });
         });
