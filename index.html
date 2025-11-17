@@ -664,7 +664,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Loading Spinner */
         .loading-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -835,356 +834,220 @@
     <div id="toast" class="toast">Order Delivered</div>
 
     <!-- ==================== WEEKLY MENU - EDIT THIS ONLY ==================== -->
-<script>
-    const weeklyMenu = {
-       monday: {
-    lunch: [
-      {icon:"utensils", name:"CHICKEN MAYONISE SANDWICH",      cat:"Main Dish (per unit)"},
-      {icon:"leaf",     name:"MOONG DAL SALAD",    cat:"Salad (per bowl)"},
-      {icon:"apple-alt",name:"ANY",              cat:"Fruits (per plate)"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"PUDDING",            cat:"Sweet"},
-      {icon:"pepper-hot",name:"GAWAR ALOO",          cat:"Starter (per bowl)"},
-      {icon:"bread-slice",name:"Roti",          cat:"Roti (per unit)"},
-      {icon:"bowl-rice",name:"CHAWAL",          cat:"Rice (per plate)"},
-      {icon:"bowl-rice",name:"MASOOR DAL",      cat:"Gravy (per bowl)"}
-    ]
-  },
-  tuesday: {
-    lunch: [
-      {icon:"utensils", name:"METHI GAAJAR PARATHA",   cat:"Main Dish (per unit)"},
-      {icon:"leaf",     name:"TOMATO CHUTNEY",   cat:"Gravy (per bowl)"},
-	  {icon:"leaf",     name:"SHREE KHAND",   cat:"Salad (per bowl)"},
-      {icon:"apple-alt",name:"ANY",            cat:"Fruits (per plate)"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"KHEER",    cat:"Sweet"},
-      {icon:"pepper-hot",name:"MASALA BHINDI",   cat:"Starter (per bowl)"},
-      {icon:"bread-slice",name:"Roti",         cat:"Roti (per unit)"},
-      {icon:"bowl-rice",name:"CHAWAL",cat:"Rice (per plate)"},
-      {icon:"bowl-rice",name:"KAADHI",    cat:"Soup (per bowl)"}
-    ]
-  },
-  wednesday: {
-    lunch: [
-      {icon:"utensils", name:"CHICKEN PIZZA", cat:"Main Dish (per unit)"},
-      {icon:"leaf",     name:"FRENCH FRIES",       cat:"Salad (per plate)"},
-      {icon:"apple-alt",name:"ANY",                cat:"Fruits"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"FALOODA",    cat:"Sweet"},
-      {icon:"pepper-hot",name:"GILKI",           cat:"Starter (per bowl)"},
-      {icon:"bread-slice",name:"Roti",            cat:"Roti (per unit)"},
-      {icon:"bowl-rice",name:"JEERA RICE",            cat:"Rice (per plate)"},
-      {icon:"bowl-rice",name:"TADKA DAL",         cat:"Gravy (per bowl)"}
-    ]
-  },
-  thursday: {
-    lunch: [
-      {icon:"utensils", name:"CHICKEN SUBWAY SANDWICH",    cat:"Main Dish (per unit)"},
-      {icon:"leaf",     name:"CHIPS",   cat:"Salad (per pkt)"},
-      {icon:"apple-alt",name:"ANY",         cat:"Fruits"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"DUDHI HALWA",                 cat:"Sweet"},
-      {icon:"pepper-hot",name:"LASGANE",cat:"Starter (per unit)"},
-      {icon:"bowl-rice",name:"CHICKEN MASKA PULAW",              cat:"Rice (per plate)"}
-
-    ]
-  },
-  friday: {
-    lunch: [
-      {icon:"utensils", name:"GREEN TIKKI BURGER", cat:"Main Dish (per unit)"},
-      {icon:"leaf",     name:"KURKURE SALAD",        cat:"Salad (per plate)"},
-      {icon:"apple-alt",name:"ANY",                cat:"Fruits"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"GULAB JAMOON",   cat:"Sweet"},
-      {icon:"pepper-hot",name:"RAJMA",cat:"Starter (per bowl)"},
-      {icon:"bread-slice",name:"ROTI",      cat:"Roti (per unit)"},
-      {icon:"bowl-rice",name:"CHAWAL",      cat:"Rice (per plate)"},
-      {icon:"bowl-rice",name:"DAL CHAWAL PALIDU",   cat:"Gravy (per bowl)"}
-    ]
-  },
-  saturday: {
-    lunch: [
-      {icon:"utensils", name:"CHOLE", cat:"Main Dish (per bowl)"},
-	  {icon:"utensils", name:"BHATURE", cat:" (per unit)"},
-      {icon:"leaf",     name:"CORN",   cat:"Salad (per plate)"},
-      {icon:"apple-alt",name:"ANY",     cat:"Fruits"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"FRUIT CUSTARD",   cat:"Sweet"},
-      {icon:"pepper-hot",name:"CHICKEN CHILLI",cat:"Starter (per plate)"},
-      {icon:"bowl-rice",name:" KOREAN BIBIMBAM ",         cat:"Rice"}
-    ]
-  },
-  sunday: {
-    lunch: [
-	  {icon:"pepper-hot",name:"CHICKEN POPCORN",cat:"Starter (per plate)"},
-      {icon:"utensils", name:"CHICKEN AFGHANI", cat:"Main Dish (per bowl)"},
-      {icon:"bread-slice",name:"ROTI",          cat:"Roti (per unit)"},
-      {icon:"bowl-rice",name:"CHAWAL",          cat:"Rice (per plate)"}
-    ],
-    dinner: [
-      {icon:"cookie",   name:"RAS MALAI",   cat:"Sweet"},
-	  {icon:"pepper-hot",name:"CHICKEN SHAHI ROLL",cat:"Starter (per unit)"},
-      {icon:"pepper-hot",name:"ALMOND SOUP",cat:"Soup (per bowl)"},
-      {icon:"bowl-rice",name:"MUTTON MASKA PULAV",cat:"Rice (per plate)"}
-    ]
-  }
-};
-
-    // Dynamically create menu
-    function createMenuForDay(day) {
-      const data = weeklyMenu[day];
-      if (!data) return;
-      const dayContent = document.getElementById(day);
-      if (!dayContent) return;
-
-      const summary = dayContent.querySelector('.order-summary');
-      const submitBtn = dayContent.querySelector('.submit-btn');
-      dayContent.innerHTML = '';
-      dayContent.appendChild(summary);
-      dayContent.appendChild(submitBtn);
-
-      const lunchSection = createMealSection('lunch', data.lunch);
-      dayContent.insertBefore(lunchSection, summary);
-
-      const dinnerSection = createMealSection('dinner', data.dinner);
-      dayContent.insertBefore(dinnerSection, summary);
-
-      attachQuantityListeners();
-      updateSummary(day);
-    }
-
-    function createMealSection(type, items) {
-      const section = document.createElement('div');
-      section.className = `meal-section ${type}`;
-
-      const video = document.createElement('video');
-      video.autoplay = video.loop = video.muted = video.playsInline = true;
-      const source = document.createElement('source');
-      source.src = type === 'lunch'
-        ? 'https://assets.mixkit.co/videos/preview/mixkit-sunrise-in-nature-1121-large.mp4'
-        : 'https://assets.mixkit.co/videos/preview/mixkit-full-moon-night-sky-3276-large.mp4';
-      source.type = 'video/mp4';
-      video.appendChild(source);
-      section.appendChild(video);
-
-      const header = document.createElement('div');
-      header.className = `meal-header ${type}`;
-      header.innerHTML = `<i class="fas fa-${type === 'lunch' ? 'sun' : 'moon'}"></i><span>${type.toUpperCase()}</span>`;
-      section.appendChild(header);
-
-      const container = document.createElement('div');
-      container.className = 'dishes-container';
-
-      items.forEach(item => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'dish-category';
-
-        const title = document.createElement('div');
-        title.className = 'category-title';
-        title.textContent = item.cat;
-        categoryDiv.appendChild(title);
-
-        const dishItem = document.createElement('div');
-        dishItem.className = 'dish-item';
-        dishItem.dataset.dish = item.name;
-        dishItem.innerHTML = `
-          <div class="dish-info">
-            <div class="dish-icon"><i class="fas fa-${item.icon}"></i></div>
-            <div class="dish-name">${item.name}</div>
-          </div>
-          <div class="quantity-selector">
-            <button class="qty-btn minus" type="button">-</button>
-            <div class="qty-display">0</div>
-            <button class="qty-btn plus" type="button">+</button>
-          </div>
-        `;
-        categoryDiv.appendChild(dishItem);
-        container.appendChild(categoryDiv);
-      });
-
-      section.appendChild(container);
-      return section;
-    }
-
-    function attachQuantityListeners() {
-      document.querySelectorAll('.qty-btn').forEach(btn => {
-        btn.replaceWith(btn.cloneNode(true));
-      });
-
-      document.querySelectorAll('.qty-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const display = this.parentElement.querySelector('.qty-display');
-          let current = parseFloat(display.textContent) || 0;
-          if (this.classList.contains('plus')) {
-            current += 0.5;
+    <script>
+        const weeklyMenu = {
+           monday: {
+            lunch: [
+              
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
+          },
+          tuesday: {
+            lunch: [
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
+          },
+          wednesday: {
+            lunch: [
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
+          },
+          thursday: {
+            lunch: [
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
+          },
+          friday: {
+            lunch: [
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
+          },
+          saturday: {
+            lunch: [
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per plate)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
+          },
+          sunday: {
+            lunch: [
+              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+              {icon:"cookie",     name:"", cat:"Sweet"},
+              {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
+              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+            ]
           }
-          if (this.classList.contains('minus') && current > 0) {
-            current -= 0.5;
-          }
-          if (current < 0) current = 0;
-          display.textContent = current % 1 === 0 ? current.toString() : current.toFixed(1);
-          updateSummary(getCurrentDay());
-        });
-      });
-    }
+        };
 
-    function getCurrentDay() {
-      const activeTab = document.querySelector('.day-tab.active');
-      return activeTab ? activeTab.dataset.day : 'monday';
-    }
+        // Dynamically create menu
+        function createMenuForDay(day) {
+          const data = weeklyMenu[day];
+          if (!data) return;
+          const dayContent = document.getElementById(day);
+          if (!dayContent) return;
 
-    function updateSummary(day) {
-      const summaryDiv = document.getElementById(day + '-summary');
-      if (!summaryDiv) return;
-      summaryDiv.innerHTML = '';
+          const summary = dayContent.querySelector('.order-summary');
+          const submitBtn = dayContent.querySelector('.submit-btn');
+          dayContent.innerHTML = '';
+          dayContent.appendChild(summary);
+          dayContent.appendChild(submitBtn);
 
-      const dayContent = document.getElementById(day);
-      if (!dayContent) return;
+          const lunchSection = createMealSection('lunch', data.lunch);
+          dayContent.insertBefore(lunchSection, summary);
 
-      const lunchItems = [];
-      const dinnerItems = [];
+          const dinnerSection = createMealSection('dinner', data.dinner);
+          dayContent.insertBefore(dinnerSection, summary);
 
-      dayContent.querySelectorAll('.meal-section.lunch .dish-item').forEach(item => {
-        const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
-        if (qty > 0) {
-          const name = item.querySelector('.dish-name').textContent.trim();
-          lunchItems.push({ name, quantity: qty });
-        }
-      });
-
-      dayContent.querySelectorAll('.meal-section.dinner .dish-item').forEach(item => {
-        const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
-        if (qty > 0) {
-          const name = item.querySelector('.dish-name').textContent.trim();
-          dinnerItems.push({ name, quantity: qty });
-        }
-      });
-
-      if (lunchItems.length > 0) {
-        const header = document.createElement('div');
-        header.className = 'summary-section-header';
-        header.innerHTML = 'Lunch';
-        summaryDiv.appendChild(header);
-        lunchItems.forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'summary-item';
-          const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(1);
-          div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
-          summaryDiv.appendChild(div);
-        });
-      }
-
-      if (dinnerItems.length > 0) {
-        const header = document.createElement('div');
-        header.className = 'summary-section-header';
-        header.innerHTML = 'Dinner';
-        summaryDiv.appendChild(header
-
-        );
-        dinnerItems.forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'summary-item';
-          const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(1);
-          div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
-          summaryDiv.appendChild(div);
-        });
-      }
-    }
-
-    document.querySelectorAll('.day-tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
-        this.classList.add('active');
-        const day = this.dataset.day;
-        document.getElementById(day).classList.add('active');
-        updateSummary(day);
-      });
-    });
-
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSU2DvQ7i7QHrsEnXHVPCAKBsT2EP1mMD-5zFtTip5P9mMXYNUkFbRd0kHUKYRCKf8/exec";
-
-    document.querySelectorAll('.submit-btn').forEach(button => {
-      button.addEventListener('click', async function() {
-        const day = this.dataset.day;
-        const name = document.getElementById('customer-name').value.trim();
-        if (!name) {
-          alert('Please enter your name before submitting.');
-          return;
+          attachQuantityListeners();
+          updateSummary(day);
         }
 
-        const dayContent = document.getElementById(day);
-        const items = [];
+        function createMealSection(type, items) {
+          const section = document.createElement('div');
+          section.className = `meal-section ${type}`;
 
-        dayContent.querySelectorAll('.dish-item').forEach(item => {
-          const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
-          if (qty > 0) {
-            const mealType = item.closest('.meal-section').classList.contains('lunch') ? 'lunch' : 'dinner';
-            items.push({
-              name: item.querySelector('.dish-name').textContent.trim(),
-              quantity: qty,
-              mealType
-            });
-          }
-        });
+          const video = document.createElement('video');
+          video.autoplay = video.loop = video.muted = video.playsInline = true;
+          const source = document.createElement('source');
+          source.src = type === 'lunch'
+            ? 'https://assets.mixkit.co/videos/preview/mixkit-sunrise-in-nature-1121-large.mp4'
+            : 'https://assets.mixkit.co/videos/preview/mixkit-full-moon-night-sky-3276-large.mp4';
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          section.appendChild(video);
 
-        if (items.length === 0) {
-          alert("Please select at least one dish.");
-          return;
-        }
+          const header = document.createElement('div');
+          header.className = `meal-header ${type}`;
+          header.innerHTML = `<i class="fas fa-${type === 'lunch' ? 'sun' : 'moon'}"></i><span>${type.toUpperCase()}</span>`;
+          section.appendChild(header);
 
-        const data = { name, day: day.charAt(0).toUpperCase() + day.slice(1), items };
+          const container = document.createElement('div');
+          container.className = 'dishes-container';
 
-        // Show loading spinner
-        const loading = document.getElementById('loading-overlay');
-        loading.style.display = 'flex';
+          items.forEach(item => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'dish-category';
 
-        try {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+            const title = document.createElement('div');
+            title.className = 'category-title';
+            title.textContent = item.cat;
+            categoryDiv.appendChild(title);
+
+            const dishItem = document.createElement('div');
+            dishItem.className = 'dish-item';
+            dishItem.dataset.dish = item.name;
+            dishItem.innerHTML = `
+              <div class="dish-info">
+                <div class="dish-icon"><i class="fas fa-${item.icon}"></i></div>
+                <div class="dish-name">${item.name}</div>
+              </div>
+              <div class="quantity-selector">
+                <button class="qty-btn minus" type="button">-</button>
+                <div class="qty-display">0</div>
+                <button class="qty-btn plus" type="button">+</button>
+              </div>
+            `;
+            categoryDiv.appendChild(dishItem);
+            container.appendChild(categoryDiv);
           });
 
-          const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flick.ogg");
-          audio.play();
-
-          const toast = document.getElementById('toast');
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 500);
-
-          if ('speechSynthesis' in window) {
-            speechSynthesis.speak(new SpeechSynthesisUtterance('Order delivered'));
-          }
-
-          dayContent.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
-          updateSummary(day);
-        } catch (e) {
-          alert("Error submitting. Try again.");
-          console.error(e);
-        } finally {
-          // Hide loading spinner
-          loading.style.display = 'none';
+          section.appendChild(container);
+          return section;
         }
-      });
-    });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      Object.keys(weeklyMenu).forEach(day => createMenuForDay(day));
-      document.querySelector('.day-tab.active').click();
-    });
-</script>
+        function attachQuantityListeners() {
+          document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.replaceWith(btn.cloneNode(true));
+          });
 
-    <!-- ==================== ORIGINAL FUNCTIONALITY (UNCHANGED) ==================== -->
-    <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSU2DvQ7i7QHrsEnXHVPCAKBsT2EP1mMD-5zFtTip5P9mMXYNUkFbRd0kHUKYRCKf8/exec";
+          document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const display = this.parentElement.querySelector('.qty-display');
+              let current = parseFloat(display.textContent) || 0;
+              if (this.classList.contains('plus')) {
+                current += 0.5;
+              }
+              if (this.classList.contains('minus') && current > 0) {
+                current -= 0.5;
+              }
+              if (current < 0) current = 0;
+              display.textContent = current % 1 === 0 ? current.toString() : current.toFixed(1);
+              updateSummary(getCurrentDay());
+            });
+          });
+        }
 
         function getCurrentDay() {
           const activeTab = document.querySelector('.day-tab.active');
@@ -1195,6 +1058,7 @@
           const summaryDiv = document.getElementById(day + '-summary');
           if (!summaryDiv) return;
           summaryDiv.innerHTML = '';
+
           const dayContent = document.getElementById(day);
           if (!dayContent) return;
 
@@ -1202,48 +1066,46 @@
           const dinnerItems = [];
 
           dayContent.querySelectorAll('.meal-section.lunch .dish-item').forEach(item => {
-            const qtyDisplay = item.querySelector('.qty-display');
-            const qty = parseFloat(qtyDisplay.textContent) || 0;
+            const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
             if (qty > 0) {
               const name = item.querySelector('.dish-name').textContent.trim();
-              lunchItems.push({ name, quantity: qty, mealType: "lunch" });
+              lunchItems.push({ name, quantity: qty });
             }
           });
 
           dayContent.querySelectorAll('.meal-section.dinner .dish-item').forEach(item => {
-            const qtyDisplay = item.querySelector('.qty-display');
-            const qty = parseFloat(qtyDisplay.textContent) || 0;
+            const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
             if (qty > 0) {
               const name = item.querySelector('.dish-name').textContent.trim();
-              dinnerItems.push({ name, quantity: qty, mealType: "dinner" });
+              dinnerItems.push({ name, quantity: qty });
             }
           });
 
           if (lunchItems.length > 0) {
-            const lunchHeader = document.createElement('div');
-            lunchHeader.className = 'summary-section-header';
-            lunchHeader.innerHTML = '<i class="fas fa-sun"></i> Lunch';
-            summaryDiv.appendChild(lunchHeader);
+            const header = document.createElement('div');
+            header.className = 'summary-section-header';
+            header.innerHTML = 'Lunch';
+            summaryDiv.appendChild(header);
             lunchItems.forEach(item => {
-              const itemDiv = document.createElement('div');
-              itemDiv.className = 'summary-item';
-              const qtyStr = (item.quantity % 1 === 0) ? item.quantity.toString() : item.quantity.toFixed(1);
-              itemDiv.innerHTML = `<span>${item.name} x ${qtyStr}</span><span></span>`;
-              summaryDiv.appendChild(itemDiv);
+              const div = document.createElement('div');
+              div.className = 'summary-item';
+              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(1);
+              div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
+              summaryDiv.appendChild(div);
             });
           }
 
           if (dinnerItems.length > 0) {
-            const dinnerHeader = document.createElement('div');
-            dinnerHeader.className = 'summary-section-header';
-            dinnerHeader.innerHTML = '<i class="fas fa-moon"></i> Dinner';
-            summaryDiv.appendChild(dinnerHeader);
+            const header = document.createElement('div');
+            header.className = 'summary-section-header';
+            header.innerHTML = 'Dinner';
+            summaryDiv.appendChild(header);
             dinnerItems.forEach(item => {
-              const itemDiv = document.createElement('div');
-              itemDiv.className = 'summary-item';
-              const qtyStr = (item.quantity % 1 === 0) ? item.quantity.toString() : item.quantity.toFixed(1);
-              itemDiv.innerHTML = `<span>${item.name} x ${qtyStr}</span><span></span>`;
-              summaryDiv.appendChild(itemDiv);
+              const div = document.createElement('div');
+              div.className = 'summary-item';
+              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(1);
+              div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
+              summaryDiv.appendChild(div);
             });
           }
         }
@@ -1259,23 +1121,7 @@
           });
         });
 
-        document.querySelectorAll('.qty-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const display = this.parentElement.querySelector('.qty-display');
-            let current = parseFloat(display.textContent) || 0;
-            if (this.classList.contains('plus')) {
-              current += 0.5;
-            }
-            if (this.classList.contains('minus') && current > 0) {
-              current -= 0.5;
-            }
-            if (current < 0) current = 0;
-            const qtyStr = (current % 1 === 0) ? current.toString() : current.toFixed(1);
-            display.textContent = qtyStr;
-            const currentDay = getCurrentDay();
-            updateSummary(currentDay);
-          });
-        });
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSU2DvQ7i7QHrsEnXHVPCAKBsT2EP1mMD-5zFtTip5P9mMXYNUkFbRd0kHUKYRCKf8/exec";
 
         document.querySelectorAll('.submit-btn').forEach(button => {
           button.addEventListener('click', async function() {
@@ -1289,36 +1135,24 @@
             const dayContent = document.getElementById(day);
             const items = [];
 
-            dayContent.querySelectorAll('.meal-section.lunch .dish-item').forEach(item => {
-              const qtyDisplay = item.querySelector('.qty-display');
-              const qty = parseFloat(qtyDisplay.textContent) || 0;
+            dayContent.querySelectorAll('.dish-item').forEach(item => {
+              const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
               if (qty > 0) {
+                const mealType = item.closest('.meal-section').classList.contains('lunch') ? 'lunch' : 'dinner';
                 items.push({
                   name: item.querySelector('.dish-name').textContent.trim(),
                   quantity: qty,
-                  mealType: "lunch"
-                });
-              }
-            });
-
-            dayContent.querySelectorAll('.meal-section.dinner .dish-item').forEach(item => {
-              const qtyDisplay = item.querySelector('.qty-display');
-              const qty = parseFloat(qtyDisplay.textContent) || 0;
-              if (qty > 0) {
-                items.push({
-                  name: item.querySelector('.dish-name').textContent.trim(),
-                  quantity: qty,
-                  mealType: "dinner"
+                  mealType
                 });
               }
             });
 
             if (items.length === 0) {
-              alert("Please select at least one dish before submitting.");
+              alert("Please select at least one dish.");
               return;
             }
 
-            const data = { name, day, items };
+            const data = { name, day: day.charAt(0).toUpperCase() + day.slice(1), items };
 
             const loading = document.getElementById('loading-overlay');
             loading.style.display = 'flex';
@@ -1336,28 +1170,27 @@
 
               const toast = document.getElementById('toast');
               toast.classList.add('show');
-              setTimeout(() => {
-                toast.classList.remove('show');
-              }, 500);
+              setTimeout(() => toast.classList.remove('show'), 500);
 
               if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance('Order delivered');
-                utterance.rate = 2;
-                speechSynthesis.speak(utterance);
+                speechSynthesis.speak(new SpeechSynthesisUtterance('Order delivered'));
               }
 
-              dayContent.querySelectorAll('.qty-display').forEach(d => d.textContent = "0");
+              dayContent.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
               updateSummary(day);
-            } catch (error) {
-              alert("Error submitting order. Please try again.");
-              console.error(error);
+            } catch (e) {
+              alert("Error submitting. Try again.");
+              console.error(e);
             } finally {
               loading.style.display = 'none';
             }
           });
         });
 
-        updateSummary('monday');
+        document.addEventListener('DOMContentLoaded', () => {
+          Object.keys(weeklyMenu).forEach(day => createMenuForDay(day));
+          document.querySelector('.day-tab.active').click();
+        });
     </script>
 
     <!-- Password Modal -->
@@ -1436,5 +1269,4 @@
     })();
     </script>
 </body>
-
 </html>
