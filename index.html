@@ -502,7 +502,7 @@
             z-index: 2;
         }
         .order-summary::before {
-            content: '\f0b0';
+            content: 'f0b0';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
@@ -743,7 +743,7 @@
 
             <div class="header-actions">
                 <button id="view-db-link" class="view-db-btn" type="button" data-href="https://docs.google.com/spreadsheets/d/1E_Um7247eCREoxiXttCCd76xRgFB6nMCf3bzzMrNch0/edit">
-                    <i class="fas fa-database"></i> View Orders Database
+                    View Orders Database
                 </button>
             </div>
         </header>
@@ -759,14 +759,13 @@
         </div>
 
         <div class="content-area">
-            <!-- Menus will be generated dynamically -->
             <div class="day-content active" id="monday">
                 <h2 class="day-title">Monday's Special</h2>
                 <div class="order-summary">
                     <div class="summary-header"><span>Order Summary</span><span>Monday</span></div>
                     <div class="summary-items" id="monday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="monday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="monday">Submit</button>
             </div>
 
             <div class="day-content" id="tuesday">
@@ -775,7 +774,7 @@
                     <div class="summary-header"><span>Order Summary</span><span>Tuesday</span></div>
                     <div class="summary-items" id="tuesday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="tuesday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="tuesday">Submit</button>
             </div>
 
             <div class="day-content" id="wednesday">
@@ -784,7 +783,7 @@
                     <div class="summary-header"><span>Order Summary</span><span>Wednesday</span></div>
                     <div class="summary-items" id="wednesday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="wednesday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="wednesday">Submit</button>
             </div>
 
             <div class="day-content" id="thursday">
@@ -793,7 +792,7 @@
                     <div class="summary-header"><span>Order Summary</span><span>Thursday</span></div>
                     <div class="summary-items" id="thursday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="thursday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="thursday">Submit</button>
             </div>
 
             <div class="day-content" id="friday">
@@ -802,7 +801,7 @@
                     <div class="summary-header"><span>Order Summary</span><span>Friday</span></div>
                     <div class="summary-items" id="friday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="friday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="friday">Submit</button>
             </div>
 
             <div class="day-content" id="saturday">
@@ -811,7 +810,7 @@
                     <div class="summary-header"><span>Order Summary</span><span>Saturday</span></div>
                     <div class="summary-items" id="saturday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="saturday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="saturday">Submit</button>
             </div>
 
             <div class="day-content" id="sunday">
@@ -820,12 +819,11 @@
                     <div class="summary-header"><span>Order Summary</span><span>Sunday</span></div>
                     <div class="summary-items" id="sunday-summary"></div>
                 </div>
-                <button class="submit-btn" data-day="sunday"><i class="fas fa-paper-plane"></i>Submit</button>
+                <button class="submit-btn" data-day="sunday">Submit</button>
             </div>
         </div>
     </div>
 
-    <!-- Loading Spinner -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="loading-spinner"></div>
         <div class="loading-text">Submitting your order...</div>
@@ -833,125 +831,110 @@
 
     <div id="toast" class="toast">Order Delivered</div>
 
-    <!-- ==================== WEEKLY MENU - EDIT THIS ONLY ==================== -->
     <script>
         const weeklyMenu = {
            monday: {
             lunch: [
-              
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"utensils",   name:"CHICKEN WHITE SAUCE PASTA", cat:"Main Dish (per bowl)"},
+              {icon:"leaf",       name:"CHIPS", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"ANY", cat:"Fruits (per plate)"},
               {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
             ],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"cookie",     name:"SUJI HALWA", cat:"Sweet"},
+              {icon:"pepper-hot", name:"ALU FRY", cat:"Starter (per bowl)"},
+              {icon:"bowl-rice",  name:"CHAWAL", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"MASOOR DAL", cat:"Gravy (per bowl)"}
             ]
           },
           tuesday: {
             lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"utensils",   name:"DABELI", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"DAHI RAITA", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"ANY", cat:"Fruits (per plate)"},
               {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
             ],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"pepper-hot", name:"DABBA GOSHT", cat:"Starter (per bowl)"},
+              {icon:"bowl-rice",  name:"CHAWAL", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"CHICKEN KORMA", cat:"Gravy (per bowl)"}
             ]
           },
           wednesday: {
             lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"utensils",   name:"CHICKEN CHEESE SANDWICH", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"KURKURE SALAD", cat:"Salad (per pkt)"},
+              {icon:"apple-alt",  name:"ANY", cat:"Fruits (per plate)"},
               {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
             ],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"cookie",     name:"FRUIT CUSTARD", cat:"Sweet"},
+              {icon:"pepper-hot", name:"MIX VEG TARKARI", cat:"Starter (per bowl)"},
+              {icon:"bowl-rice",  name:"CHAWAL", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"TADHKA DAL", cat:"Gravy (per bowl)"}
             ]
           },
           thursday: {
             lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
+              {icon:"utensils",   name:"FALAFEL PITA BREAD", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"GREEN SALAD", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"ANY", cat:"Fruits (per plate)"},
+              {icon:"bowl-food",  name:"HUMUS", cat:"Chutney (per bowl)"}  
+			],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"bowl-rice",  name:"CHAWAL", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"CHICKEN TIKKA GRAVY", cat:"Gravy (per bowl)"}
             ]
           },
           friday: {
             lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+              {icon:"utensils",   name:"GARLIC BREAD", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"CORN SALAD", cat:"Salad (per bowl)"},
+              {icon:"apple-alt",  name:"ANY", cat:"Fruits (per plate)"},
+              {icon:"bowl-food",  name:"CHICKEN WHITE SAUCE", cat:"Gravy (per bowl)"}
             ],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"cookie",     name:"DOODHI HALWA", cat:"Sweet"},
+              {icon:"pepper-hot", name:"ALOO TARKARI", cat:"Starter (per bowl)"},
+              {icon:"mug-hot",    name:"TOMATO SOUP", cat:"Soup (per bowl)"},
+              {icon:"bowl-rice",  name:"VEG PULAV", cat:"Rice (per plate)"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"}
             ]
           },
           saturday: {
             lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
+              {icon:"utensils",   name:"PUNJABI SAMOSA", cat:"Main Dish (per unit)"},
+              {icon:"leaf",       name:"RAGDA PATEESE", cat:"Salad (per plate)"},
+              {icon:"apple-alt",  name:"ANY", cat:"Fruits (per plate)"},
               {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
             ],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per plate)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"cookie",     name:"KALAMDA", cat:"Sweet"},
+              {icon:"pepper-hot", name:"HONEY CHICKEN", cat:"Starter (per plate)"},
+              {icon:"bowl-rice",  name:"CHAWAL", cat:"Rice"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"MUTTON ROGAN JOSH TARKARI", cat:"Gravy (per bowl)"}
             ]
           },
           sunday: {
             lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
+              {icon:"utensils",   name:"DAL GOSHT", cat:"Main Dish (per bowl)"},
+			  {icon:"bowl-rice",  name:"CHAWAL", cat:"Rice"},
+              {icon:"bread-slice",name:"ROTI", cat:"Roti (per unit)"},
             ],
             dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
+              {icon:"cookie",     name:"GAAJAR HALWA", cat:"Sweet"},
+              {icon:"pepper-hot", name:"CHCIKEN PESHAWARI", cat:"Starter (per plate)"},
+              {icon:"bread-slice",name:"TANDOORI ROTI", cat:"Roti (per unit)"},
+              {icon:"bowl-food",  name:"MUNDI PAYA TARKARI", cat:"Gravy (per bowl)"}
             ]
           }
         };
 
-        // Dynamically create menu
         function createMenuForDay(day) {
           const data = weeklyMenu[day];
           if (!data) return;
@@ -1037,13 +1020,13 @@
               const display = this.parentElement.querySelector('.qty-display');
               let current = parseFloat(display.textContent) || 0;
               if (this.classList.contains('plus')) {
-                current += 0.5;
+                current += 0.25;        // Changed to 0.25
               }
               if (this.classList.contains('minus') && current > 0) {
-                current -= 0.5;
+                current -= 0.25;        // Changed to 0.25
               }
               if (current < 0) current = 0;
-              display.textContent = current % 1 === 0 ? current.toString() : current.toFixed(1);
+              display.textContent = current % 1 === 0 ? current.toString() : current.toFixed(2);
               updateSummary(getCurrentDay());
             });
           });
@@ -1089,7 +1072,7 @@
             lunchItems.forEach(item => {
               const div = document.createElement('div');
               div.className = 'summary-item';
-              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(1);
+              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(2);
               div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
               summaryDiv.appendChild(div);
             });
@@ -1103,7 +1086,7 @@
             dinnerItems.forEach(item => {
               const div = document.createElement('div');
               div.className = 'summary-item';
-              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(1);
+              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(2);
               div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
               summaryDiv.appendChild(div);
             });
@@ -1193,7 +1176,6 @@
         });
     </script>
 
-    <!-- Password Modal -->
     <div id="db-password-modal" class="db-modal" role="dialog" aria-modal="true" aria-labelledby="db-modal-title" style="display:none;">
       <div class="db-modal-overlay" id="db-modal-overlay"></div>
       <div class="db-modal-content" role="document" style="max-width:420px;padding:20px;border-radius:12px;background:rgba(255,255,255,0.98);box-shadow:0 20px 40px rgba(0,0,0,0.25);position:fixed;left:50%;top:45%;transform:translate(-50%,-50%);z-index:2000;">
@@ -1269,6 +1251,4 @@
     })();
     </script>
 </body>
-
 </html>
-
