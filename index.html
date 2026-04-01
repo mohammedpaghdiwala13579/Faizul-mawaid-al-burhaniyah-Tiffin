@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -831,362 +832,521 @@
 
     <div id="toast" class="toast">Order Delivered</div>
 
-    <script>
-        const weeklyMenu = {
-           monday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          },
-          tuesday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          },
-          wednesday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          },
-          thursday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          },
-          friday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          },
-          saturday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per plate)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          },
-          sunday: {
-            lunch: [
-              {icon:"utensils",   name:"", cat:"Main Dish (per unit)"},
-              {icon:"leaf",       name:"", cat:"Salad (per bowl)"},
-              {icon:"apple-alt",  name:"", cat:"Fruits (per plate)"},
-              {icon:"wine-bottle",name:"", cat:"Juice (per glass)"}
-            ],
-            dinner: [
-              {icon:"cookie",     name:"", cat:"Sweet"},
-              {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
-              {icon:"mug-hot",    name:"", cat:"Soup (per bowl)"},
-              {icon:"bowl-rice",  name:"", cat:"Rice (per plate)"},
-              {icon:"bread-slice",name:"", cat:"Roti (per unit)"},
-              {icon:"bowl-food",  name:"", cat:"Gravy (per bowl)"}
-            ]
-          }
-        };
+<script>
+    const MENU_FETCH_URL = "https://script.google.com/macros/s/AKfycbzN48vSmt8BmP8j1h0lbiJhtYzzjYxVsZ64BsFok4MYpw9megWRSkfD91V3fN65zmdp/exec"; // Replace with your Web App URL
+    const ORDER_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbwJzUaTtITuyi6wsyjJw4wgDdhVpjE4t6S4ab6mu7Vi5Cl_YwsNsrJKD74LRQcm6val/exec";
+    
+    let weeklyMenu = {};
+    let menuLoaded = false;
 
-        function createMenuForDay(day) {
-          const data = weeklyMenu[day];
-          if (!data) return;
-          const dayContent = document.getElementById(day);
-          if (!dayContent) return;
+    // Default menu structure (fallback if fetch fails)
+    const defaultWeeklyMenu = {
+        monday: {
+            lunch: [
+                {icon:"utensils", name:"", cat:"Main Dish (per unit)"},
+                {icon:"leaf", name:"", cat:"Salad (per bowl)"},
+                {icon:"apple-alt", name:"", cat:"Fruits (per plate)"},
+                {icon:"wine-bottle", name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        },
+        tuesday: {
+            lunch: [
+                {icon:"utensils", name:"", cat:"Main Dish (per unit)"},
+                {icon:"leaf", name:"", cat:"Salad (per bowl)"},
+                {icon:"apple-alt", name:"", cat:"Fruits (per plate)"},
+                {icon:"wine-bottle", name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        },
+        wednesday: {
+            lunch: [
+                {icon:"utensils", name:"", cat:"Main Dish (per unit)"},
+                {icon:"leaf", name:"", cat:"Salad (per bowl)"},
+                {icon:"apple-alt", name:"", cat:"Fruits (per plate)"},
+                {icon:"wine-bottle", name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        },
+        thursday: {
+            lunch: [
+                {icon:"utensils", name:"", cat:"Main Dish (per unit)"},
+                {icon:"leaf", name:"", cat:"Salad (per bowl)"},
+                {icon:"apple-alt", name:"", cat:"Fruits (per plate)"},
+                {icon:"wine-bottle", name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        },
+        friday: {
+            lunch: [
+                {icon:"utensils", name:"", cat:"Main Dish (per unit)"},
+                {icon:"leaf", name:"", cat:"Salad (per bowl)"},
+                {icon:"apple-alt", name:"", cat:"Fruits (per plate)"},
+                {icon:"wine-bottle", name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per bowl)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        },
+        saturday: {
+            lunch: [
+                {icon:"utensils", name:"", cat:"Main Dish (per unit)"},
+                {icon:"leaf", name:"", cat:"Salad (per bowl)"},
+                {icon:"apple-alt", name:"", cat:"Fruits (per plate)"},
+                {icon:"wine-bottle", name:"", cat:"Juice (per glass)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per plate)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        },
+        sunday: {
+            lunch: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per plate)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ],
+            dinner: [
+                {icon:"cookie", name:"", cat:"Sweet"},
+                {icon:"pepper-hot", name:"", cat:"Starter (per unit)"},
+                {icon:"mug-hot", name:"", cat:"Soup (per bowl)"},
+                {icon:"bowl-rice", name:"", cat:"Rice (per plate)"},
+                {icon:"bread-slice", name:"", cat:"Roti (per unit)"},
+                {icon:"bowl-food", name:"", cat:"Gravy (per bowl)"}
+            ]
+        }
+    };
 
-          const summary = dayContent.querySelector('.order-summary');
-          const submitBtn = dayContent.querySelector('.submit-btn');
-          dayContent.innerHTML = '';
-          dayContent.appendChild(summary);
-          dayContent.appendChild(submitBtn);
+    // Fetch menu from Google Sheets
+    async function fetchMenuFromSheet() {
+        try {
+            console.log('🔄 Fetching menu from Google Sheets...');
+            
+            // Show loading
+            const loading = document.getElementById('loading-overlay');
+            if (loading) {
+                loading.querySelector('.loading-text').textContent = 'Loading menu...';
+                loading.style.display = 'flex';
+            }
+            
+            // Add cache busting
+            const url = MENU_FETCH_URL + '?t=' + Date.now();
+            console.log('📡 Fetch URL:', url);
+            
+            const response = await fetch(url);
+            console.log('📥 Response status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('📦 Data received:', data);
+            
+            if (data.success && data.menu) {
+                weeklyMenu = data.menu;
+                menuLoaded = true;
+                console.log('✅ Menu loaded successfully from Google Sheets');
+                
+                // Log menu summary
+                Object.keys(weeklyMenu).forEach(day => {
+                    console.log(`${day}: ${weeklyMenu[day].lunch.length} lunch items, ${weeklyMenu[day].dinner.length} dinner items`);
+                });
+            } else {
+                throw new Error('Invalid data format');
+            }
+        } catch (error) {
+            console.error('❌ Error fetching menu:', error);
+            // Use default menu as fallback
+            weeklyMenu = JSON.parse(JSON.stringify(defaultWeeklyMenu));
+            menuLoaded = true;
+            console.log('⚠️ Using default menu structure');
+        } finally {
+            // Hide loading
+            const loading = document.getElementById('loading-overlay');
+            if (loading) loading.style.display = 'none';
+        }
+    }
 
-          const lunchSection = createMealSection('lunch', data.lunch);
-          dayContent.insertBefore(lunchSection, summary);
+    // Initialize menu when page loads
+    async function initializeMenu() {
+        console.log('🚀 Initializing menu...');
+        
+        // Fetch menu from Google Sheets
+        await fetchMenuFromSheet();
+        
+        // Create menu for all days
+        Object.keys(weeklyMenu).forEach(day => {
+            createMenuForDay(day);
+        });
+        
+        // Activate first tab
+        const firstTab = document.querySelector('.day-tab');
+        if (firstTab) {
+            firstTab.click();
+        }
+        
+        console.log('✅ Menu initialization complete');
+    }
 
-          const dinnerSection = createMealSection('dinner', data.dinner);
-          dayContent.insertBefore(dinnerSection, summary);
-
-          attachQuantityListeners();
-          updateSummary(day);
+    // Create menu for a specific day
+    function createMenuForDay(day) {
+        console.log(`🔵 Creating menu for ${day}...`);
+        
+        const data = weeklyMenu[day];
+        if (!data) {
+            console.warn(`No menu data for ${day}`);
+            return;
+        }
+        
+        const dayContent = document.getElementById(day);
+        if (!dayContent) {
+            console.warn(`No element found for ${day}`);
+            return;
         }
 
-        function createMealSection(type, items) {
-          const section = document.createElement('div');
-          section.className = `meal-section ${type}`;
+        // Save summary and submit button
+        const summary = dayContent.querySelector('.order-summary');
+        const submitBtn = dayContent.querySelector('.submit-btn');
+        
+        // Clear existing content
+        dayContent.innerHTML = '';
+        
+        // Add day title
+        const dayTitle = document.createElement('h2');
+        dayTitle.className = 'day-title';
+        dayTitle.textContent = day.charAt(0).toUpperCase() + day.slice(1) + "'s Special";
+        dayContent.appendChild(dayTitle);
+        
+        // Create and add meal sections
+        if (data.lunch && data.lunch.length > 0) {
+            const lunchSection = createMealSection('lunch', data.lunch);
+            dayContent.appendChild(lunchSection);
+        }
 
-          const video = document.createElement('video');
-          video.autoplay = video.loop = video.muted = video.playsInline = true;
-          const source = document.createElement('source');
-          source.src = type === 'lunch'
+        if (data.dinner && data.dinner.length > 0) {
+            const dinnerSection = createMealSection('dinner', data.dinner);
+            dayContent.appendChild(dinnerSection);
+        }
+        
+        // Add summary and submit button back
+        if (summary) dayContent.appendChild(summary);
+        if (submitBtn) dayContent.appendChild(submitBtn);
+
+        // Attach event listeners
+        attachQuantityListeners();
+        updateSummary(day);
+        
+        console.log(`✅ Menu created for ${day}`);
+    }
+
+    // Create a meal section
+    function createMealSection(type, items) {
+        const section = document.createElement('div');
+        section.className = `meal-section ${type}`;
+
+        // Add background video
+        const video = document.createElement('video');
+        video.autoplay = video.loop = video.muted = video.playsInline = true;
+        const source = document.createElement('source');
+        source.src = type === 'lunch' 
             ? 'https://assets.mixkit.co/videos/preview/mixkit-sunrise-in-nature-1121-large.mp4'
             : 'https://assets.mixkit.co/videos/preview/mixkit-full-moon-night-sky-3276-large.mp4';
-          source.type = 'video/mp4';
-          video.appendChild(source);
-          section.appendChild(video);
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        section.appendChild(video);
 
-          const header = document.createElement('div');
-          header.className = `meal-header ${type}`;
-          header.innerHTML = `<i class="fas fa-${type === 'lunch' ? 'sun' : 'moon'}"></i><span>${type.toUpperCase()}</span>`;
-          section.appendChild(header);
+        // Create header
+        const header = document.createElement('div');
+        header.className = `meal-header ${type}`;
+        header.innerHTML = `<i class="fas fa-${type === 'lunch' ? 'sun' : 'moon'}"></i><span>${type.toUpperCase()}</span>`;
+        section.appendChild(header);
 
-          const container = document.createElement('div');
-          container.className = 'dishes-container';
+        // Create dishes container
+        const container = document.createElement('div');
+        container.className = 'dishes-container';
 
-          items.forEach(item => {
+        // Group items by category
+        const itemsByCategory = {};
+        items.forEach(item => {
+            if (!item.cat) return;
+            if (!itemsByCategory[item.cat]) {
+                itemsByCategory[item.cat] = [];
+            }
+            itemsByCategory[item.cat].push(item);
+        });
+
+        // Create category sections
+        Object.keys(itemsByCategory).forEach(category => {
             const categoryDiv = document.createElement('div');
             categoryDiv.className = 'dish-category';
 
             const title = document.createElement('div');
             title.className = 'category-title';
-            title.textContent = item.cat;
+            title.textContent = category;
             categoryDiv.appendChild(title);
 
-            const dishItem = document.createElement('div');
-            dishItem.className = 'dish-item';
-            dishItem.dataset.dish = item.name;
-            dishItem.innerHTML = `
-              <div class="dish-info">
-                <div class="dish-icon"><i class="fas fa-${item.icon}"></i></div>
-                <div class="dish-name">${item.name}</div>
-              </div>
-              <div class="quantity-selector">
-                <button class="qty-btn minus" type="button">-</button>
-                <div class="qty-display">0</div>
-                <button class="qty-btn plus" type="button">+</button>
-              </div>
-            `;
-            categoryDiv.appendChild(dishItem);
-            container.appendChild(categoryDiv);
-          });
-
-          section.appendChild(container);
-          return section;
-        }
-
-        function attachQuantityListeners() {
-          document.querySelectorAll('.qty-btn').forEach(btn => {
-            btn.replaceWith(btn.cloneNode(true));
-          });
-
-          document.querySelectorAll('.qty-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-              const display = this.parentElement.querySelector('.qty-display');
-              let current = parseFloat(display.textContent) || 0;
-              if (this.classList.contains('plus')) {
-                current += 0.25;        // Changed to 0.25
-              }
-              if (this.classList.contains('minus') && current > 0) {
-                current -= 0.25;        // Changed to 0.25
-              }
-              if (current < 0) current = 0;
-              display.textContent = current % 1 === 0 ? current.toString() : current.toFixed(2);
-              updateSummary(getCurrentDay());
+            itemsByCategory[category].forEach(item => {
+                const dishItem = document.createElement('div');
+                dishItem.className = 'dish-item';
+                dishItem.dataset.dish = item.name;
+                dishItem.innerHTML = `
+                    <div class="dish-info">
+                        <div class="dish-icon"><i class="fas fa-${item.icon}"></i></div>
+                        <div class="dish-name">${item.name || ''}</div>
+                    </div>
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" type="button">-</button>
+                        <div class="qty-display">0</div>
+                        <button class="qty-btn plus" type="button">+</button>
+                    </div>
+                `;
+                categoryDiv.appendChild(dishItem);
             });
-          });
+
+            container.appendChild(categoryDiv);
+        });
+
+        section.appendChild(container);
+        return section;
+    }
+
+    // Attach quantity button listeners
+    function attachQuantityListeners() {
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.removeEventListener('click', handleQuantityClick); // prevent duplicates
+            btn.addEventListener('click', handleQuantityClick);
+        });
+    }
+
+    function handleQuantityClick() {
+        const display = this.parentElement.querySelector('.qty-display');
+        let current = parseFloat(display.textContent) || 0;
+        if (this.classList.contains('plus')) {
+            current += 0.25;
         }
-
-        function getCurrentDay() {
-          const activeTab = document.querySelector('.day-tab.active');
-          return activeTab ? activeTab.dataset.day : 'monday';
+        if (this.classList.contains('minus') && current > 0) {
+            current -= 0.25;
         }
+        if (current < 0) current = 0;
+        display.textContent = current % 1 === 0 ? current.toString() : current.toFixed(2);
+        updateSummary(getCurrentDay());
+    }
 
-        function updateSummary(day) {
-          const summaryDiv = document.getElementById(day + '-summary');
-          if (!summaryDiv) return;
-          summaryDiv.innerHTML = '';
+    // Get current day from active tab
+    function getCurrentDay() {
+        const activeTab = document.querySelector('.day-tab.active');
+        return activeTab ? activeTab.dataset.day : 'monday';
+    }
 
-          const dayContent = document.getElementById(day);
-          if (!dayContent) return;
+    // Update order summary
+    function updateSummary(day) {
+        const summaryDiv = document.getElementById(day + '-summary');
+        if (!summaryDiv) return;
+        
+        summaryDiv.innerHTML = '';
 
-          const lunchItems = [];
-          const dinnerItems = [];
+        const dayContent = document.getElementById(day);
+        if (!dayContent) return;
 
-          dayContent.querySelectorAll('.meal-section.lunch .dish-item').forEach(item => {
+        const lunchItems = [];
+        const dinnerItems = [];
+
+        // Collect lunch items
+        dayContent.querySelectorAll('.meal-section.lunch .dish-item').forEach(item => {
             const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
             if (qty > 0) {
-              const name = item.querySelector('.dish-name').textContent.trim();
-              lunchItems.push({ name, quantity: qty });
+                const name = item.querySelector('.dish-name').textContent.trim();
+                lunchItems.push({ name, quantity: qty });
             }
-          });
+        });
 
-          dayContent.querySelectorAll('.meal-section.dinner .dish-item').forEach(item => {
+        // Collect dinner items
+        dayContent.querySelectorAll('.meal-section.dinner .dish-item').forEach(item => {
             const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
             if (qty > 0) {
-              const name = item.querySelector('.dish-name').textContent.trim();
-              dinnerItems.push({ name, quantity: qty });
+                const name = item.querySelector('.dish-name').textContent.trim();
+                dinnerItems.push({ name, quantity: qty });
             }
-          });
+        });
 
-          if (lunchItems.length > 0) {
+        // Add lunch section to summary
+        if (lunchItems.length > 0) {
             const header = document.createElement('div');
             header.className = 'summary-section-header';
             header.innerHTML = 'Lunch';
             summaryDiv.appendChild(header);
             lunchItems.forEach(item => {
-              const div = document.createElement('div');
-              div.className = 'summary-item';
-              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(2);
-              div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
-              summaryDiv.appendChild(div);
+                const div = document.createElement('div');
+                div.className = 'summary-item';
+                const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(2);
+                div.innerHTML = `<span>${item.name || 'Item'} × ${qtyStr}</span>`;
+                summaryDiv.appendChild(div);
             });
-          }
+        }
 
-          if (dinnerItems.length > 0) {
+        // Add dinner section to summary
+        if (dinnerItems.length > 0) {
             const header = document.createElement('div');
             header.className = 'summary-section-header';
             header.innerHTML = 'Dinner';
             summaryDiv.appendChild(header);
             dinnerItems.forEach(item => {
-              const div = document.createElement('div');
-              div.className = 'summary-item';
-              const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(2);
-              div.innerHTML = `<span>${item.name} × ${qtyStr}</span>`;
-              summaryDiv.appendChild(div);
+                const div = document.createElement('div');
+                div.className = 'summary-item';
+                const qtyStr = item.quantity % 1 === 0 ? item.quantity : item.quantity.toFixed(2);
+                div.innerHTML = `<span>${item.name || 'Item'} × ${qtyStr}</span>`;
+                summaryDiv.appendChild(div);
             });
-          }
         }
+    }
 
-        document.querySelectorAll('.day-tab').forEach(tab => {
-          tab.addEventListener('click', function() {
+    // Tab switching
+    document.querySelectorAll('.day-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
             document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
             this.classList.add('active');
             const day = this.dataset.day;
             document.getElementById(day).classList.add('active');
             updateSummary(day);
-          });
         });
+    });
 
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJzUaTtITuyi6wsyjJw4wgDdhVpjE4t6S4ab6mu7Vi5Cl_YwsNsrJKD74LRQcm6val/exec";
-
-        document.querySelectorAll('.submit-btn').forEach(button => {
-          button.addEventListener('click', async function() {
+    // Submit order
+    document.querySelectorAll('.submit-btn').forEach(button => {
+        button.addEventListener('click', async function() {
             const day = this.dataset.day;
             const name = document.getElementById('customer-name').value.trim();
+            
             if (!name) {
-              alert('Please enter your name before submitting.');
-              return;
+                alert('Please enter your name before submitting.');
+                return;
             }
 
             const dayContent = document.getElementById(day);
             const items = [];
 
+            // Collect selected items
             dayContent.querySelectorAll('.dish-item').forEach(item => {
-              const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
-              if (qty > 0) {
-                const mealType = item.closest('.meal-section').classList.contains('lunch') ? 'lunch' : 'dinner';
-                items.push({
-                  name: item.querySelector('.dish-name').textContent.trim(),
-                  quantity: qty,
-                  mealType
-                });
-              }
+                const qty = parseFloat(item.querySelector('.qty-display').textContent) || 0;
+                if (qty > 0) {
+                    const mealType = item.closest('.meal-section').classList.contains('lunch') ? 'lunch' : 'dinner';
+                    items.push({
+                        name: item.querySelector('.dish-name').textContent.trim(),
+                        quantity: qty,
+                        mealType
+                    });
+                }
             });
 
             if (items.length === 0) {
-              alert("Please select at least one dish.");
-              return;
+                alert("Please select at least one dish.");
+                return;
             }
 
-            const data = { name, day: day.charAt(0).toUpperCase() + day.slice(1), items };
+            // Prepare order data
+            const orderData = { 
+                name, 
+                day: day.charAt(0).toUpperCase() + day.slice(1), 
+                items 
+            };
 
+            // Show loading
             const loading = document.getElementById('loading-overlay');
+            loading.querySelector('.loading-text').textContent = 'Submitting your order...';
             loading.style.display = 'flex';
 
             try {
-              await fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-              });
+                // Submit order
+                await fetch(ORDER_SUBMIT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(orderData)
+                });
 
-              const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flick.ogg");
-              audio.play();
+                // Play success sound
+                const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flick.ogg");
+                audio.play();
 
-              const toast = document.getElementById('toast');
-              toast.classList.add('show');
-              setTimeout(() => toast.classList.remove('show'), 500);
+                // Show success toast
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 500);
 
-              if ('speechSynthesis' in window) {
-                speechSynthesis.speak(new SpeechSynthesisUtterance('Order delivered'));
-              }
+                // Speech synthesis
+                if ('speechSynthesis' in window) {
+                    speechSynthesis.speak(new SpeechSynthesisUtterance('Order delivered'));
+                }
 
-              dayContent.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
-              updateSummary(day);
-            } catch (e) {
-              alert("Error submitting. Try again.");
-              console.error(e);
+                // Reset quantities
+                dayContent.querySelectorAll('.qty-display').forEach(d => d.textContent = '0');
+                updateSummary(day);
+                
+            } catch (error) {
+                alert("Error submitting order. Please try again.");
+                console.error('❌ Order submission error:', error);
             } finally {
-              loading.style.display = 'none';
+                loading.style.display = 'none';
             }
-          });
         });
+    });
 
-        document.addEventListener('DOMContentLoaded', () => {
-          Object.keys(weeklyMenu).forEach(day => createMenuForDay(day));
-          document.querySelector('.day-tab.active').click();
-        });
-    </script>
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('📄 DOM loaded, initializing...');
+        initializeMenu();
+        
+        // Auto-refresh menu every 5 minutes
+        setInterval(async () => {
+            console.log('🔄 Auto-refreshing menu...');
+            await fetchMenuFromSheet();
+            const currentDay = getCurrentDay();
+            createMenuForDay(currentDay);
+        }, 5 * 60 * 1000);
+    });
+</script>
 
     <div id="db-password-modal" class="db-modal" role="dialog" aria-modal="true" aria-labelledby="db-modal-title" style="display:none;">
       <div class="db-modal-overlay" id="db-modal-overlay"></div>
